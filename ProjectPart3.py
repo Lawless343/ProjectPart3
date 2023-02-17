@@ -1,8 +1,9 @@
 #Thomas Lawless CIS261 ProjectPart3
 # write the line of code to import the datetime library (Hint: see Week 1 Lab 3 solution as a guide
-
+from datetime import datetime
+import locale
 # write the line of code to assign Employees.txt to the variable FILENAME (Hint: see week 6, lab 2 as a guide)
-
+FILENAME = Employees.txt
 def GetEmpName():
     empname = input("Enter employee name: ")
     return empname
@@ -53,7 +54,7 @@ def printinfo(DetailsPrinted):
     TotTax = 0.00
     TotNetPay = 0.00
 #****************************************************************************************************************************
-    # write the line of code that will open the file in read mode and assign it to EmpFile (Hint: see week 6, lab 2 as a guide)
+    with open(FILENAME, "r") as EmpFile:
     
         while True:
             rundate = input ("Enter start date for report (MM/DD/YYYY) or All for all data in file: ")
@@ -68,11 +69,10 @@ def printinfo(DetailsPrinted):
                 continue  # skip next if statement and re-start loop
         while True:
             EmpDetail = EmpFile.readline()
-            # write the if statemment that will break out of the while loop when no data is left in the file
-
-            # write the line of code that will remove the carriage return from EmpDetail
-            
-            # write the ine of code that will split EmpDetail on the pipe delimiter and assign to the list EmpList
+            if not EmpDetail:
+                break
+            EmpDetail = EmpDetail.replace("\n","")
+            EmpList = EmpDetail.split("|")
 
 #********************************************************************************************************************************
             fromdate = EmpList[0]
@@ -123,7 +123,7 @@ def PrintTotals(EmpTotals):
 #***************************************************************************************************************************************
 if __name__ == "__main__":
         # write the line of code that will open the file in append mode and assign it to EmpFile (Hint: see week 6, lab 2 as a guide)
-
+        with open(FILENAME, "a") as EmpFile:
             #EmpDetailList = []
             EmpTotals = {}
             DetailsPrinted = False
@@ -138,10 +138,10 @@ if __name__ == "__main__":
                 fromdate = fromdate.strftime('%Y-%m-%d')
                 todate = todate.strftime('%Y-%m-%d')
                 # write the line of code that will assign to EmpDetail a pipe delimited string of fromdate, todate, empname, hours, hourlyrate and taxrate and a carriage return at the end
-                
-                # write the line of code that will write EmpDetail to the file
+                EmpDetail = fromdate + "|" + todate + "|" + empname + "|" + str(hours) + "|" + str(hourlyrate) + "|" + str(taxrate) + "/n"
+                EmpFile.write(EmpDetail)
                 
             # close file to save data
             # write the line of code that will close the file
-                
+                EmpFile.close()
             printinfo(DetailsPrinted)

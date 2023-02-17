@@ -3,7 +3,7 @@
 from datetime import datetime
 import locale
 # write the line of code to assign Employees.txt to the variable FILENAME (Hint: see week 6, lab 2 as a guide)
-FILENAME = Employees.txt
+FILENAME = "Employees.txt"
 def GetEmpName():
     empname = input("Enter employee name: ")
     return empname
@@ -137,11 +137,10 @@ if __name__ == "__main__":
                 taxrate = GetTaxRate()
                 fromdate = fromdate.strftime('%Y-%m-%d')
                 todate = todate.strftime('%Y-%m-%d')
-                # write the line of code that will assign to EmpDetail a pipe delimited string of fromdate, todate, empname, hours, hourlyrate and taxrate and a carriage return at the end
                 EmpDetail = fromdate + "|" + todate + "|" + empname + "|" + str(hours) + "|" + str(hourlyrate) + "|" + str(taxrate) + "/n"
                 EmpFile.write(EmpDetail)
                 
             # close file to save data
             # write the line of code that will close the file
-                EmpFile.close()
+            EmpFile.close()
             printinfo(DetailsPrinted)

@@ -137,7 +137,7 @@ if __name__ == "__main__":
                 taxrate = GetTaxRate()
                 fromdate = fromdate.strftime('%Y-%m-%d')
                 todate = todate.strftime('%Y-%m-%d')
-                EmpDetail = fromdate + "|" + todate + "|" + empname + "|" + str(hours) + "|" + str(hourlyrate) + "|" + str(taxrate) + "/n"
+                EmpDetail = fromdate + "|" + todate + "|" + empname + "|" + str(hours) + "|" + str(hourlyrate) + "|" + str(taxrate) + "\n"
                 EmpFile.write(EmpDetail)
                 
             # close file to save data
